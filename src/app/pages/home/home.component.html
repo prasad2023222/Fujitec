@@ -1,0 +1,89 @@
+
+
+<main class="home-page">
+
+  <!-- =====================================================
+       HERO
+       ===================================================== -->
+
+  <section class="hero">
+
+    <div class="hero-media">
+
+      <img
+        [src]="heroImages[currentHeroSlide]"
+        alt="Fujitec corporate"
+        class="hero-image"
+      />
+
+      <!-- Readability overlay -->
+      <div class="hero-overlay"></div>
+
+      <!-- HERO CONTENT -->
+      <div class="hero-content">
+
+        <span class="hero-eyebrow">
+          FUJITEC INDIA
+        </span>
+
+        <h1>
+          Moving People.<br />
+          Elevating Lives.
+        </h1>
+
+        <p>
+          Connecting people, technology and progress.
+        </p>
+
+      </div>
+
+      <!-- PREVIOUS -->
+      <button
+        type="button"
+        class="hero-arrow hero-arrow-left"
+        (click)="previousHeroSlide()"
+        aria-label="Previous image"
+      >
+        ‹
+      </button>
+
+      <!-- NEXT -->
+      <button
+        type="button"
+        class="hero-arrow hero-arrow-right"
+        (click)="nextHeroSlide()"
+        aria-label="Next image"
+      >
+        ›
+      </button>
+
+      <!-- CONTROLS -->
+      <div class="hero-controls">
+
+        <div class="hero-indicators">
+
+          <button
+            *ngFor="let image of heroImages; let i = index"
+            type="button"
+            class="hero-indicator"
+            [class.active]="i === currentHeroSlide"
+            (click)="goToHeroSlide(i)"
+            [attr.aria-label]="'Go to slide ' + (i + 1)"
+          ></button>
+
+        </div>
+
+        <span class="hero-counter">
+          {{ currentHeroSlide + 1 }}
+          <span>/</span>
+          {{ heroImages.length }}
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+  <app-quick-access></app-quick-access>
+
+</main>

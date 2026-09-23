@@ -1,0 +1,45 @@
+<section class="quick-access">
+
+    <div class="quick-access-inner">
+  
+      <div class="section-heading">
+        <span class="heading-line"></span>
+  
+        <h2>QUICK LINKS</h2>
+  
+        <span class="heading-line"></span>
+      </div>
+  
+      <div class="quick-links-grid">
+  
+        <a
+          *ngFor="let link of quickLinks"
+          class="quick-link-card"
+          [href]="link.url"
+        >
+  
+          <div class="quick-link-image">
+  
+            <img
+              [src]="link.image"
+              [alt]="link.name"
+              (error)="imageFailed($event)"
+            />
+  
+            <div class="quick-link-fallback">
+              {{ link.fallback }}
+            </div>
+  
+          </div>
+  
+          <div class="quick-link-name">
+            {{ link.name }}
+          </div>
+  
+        </a>
+  
+      </div>
+  
+    </div>
+  
+  </section>
