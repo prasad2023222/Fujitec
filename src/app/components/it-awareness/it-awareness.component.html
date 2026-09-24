@@ -1,0 +1,194 @@
+<section class="it-awareness-section" id="it-awareness">
+
+  <div class="it-awareness-container">
+
+    <!-- HEADER -->
+    <div class="awareness-header">
+
+      <div class="awareness-heading">
+
+        <span class="section-kicker">
+          DIGITAL RESPONSIBILITY
+        </span>
+
+        <h2>
+          IT Awareness
+        </h2>
+
+        <p>
+          Simple security practices help us protect our people,
+          information and workplace every day.
+        </p>
+
+      </div>
+
+      <div class="awareness-badge">
+        <span class="badge-icon">✓</span>
+
+        <div>
+          <strong>Stay Secure</strong>
+          <span>Stay Aware</span>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- AWARENESS CARDS -->
+    <div class="awareness-grid">
+
+      @for (item of awarenessItems; track item.title) {
+
+        <article
+          class="awareness-card"
+          tabindex="0"
+          (click)="openItem(item)"
+          (keydown.enter)="openItem(item)"
+        >
+
+          <div class="card-top">
+
+            <div class="awareness-icon">
+              {{ item.icon }}
+            </div>
+
+            <span class="awareness-category">
+              {{ item.category }}
+            </span>
+
+          </div>
+
+
+          <h3>
+            {{ item.title }}
+          </h3>
+
+
+          <p>
+            {{ item.summary }}
+          </p>
+
+
+          <div class="card-footer">
+
+            <span>
+              Learn More
+            </span>
+
+            <span class="card-arrow">
+              →
+            </span>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+
+    <!-- BOTTOM MESSAGE -->
+    <div class="awareness-message">
+
+      <div class="message-icon">
+        !
+      </div>
+
+      <div class="message-content">
+
+        <span>
+          SECURITY REMINDER
+        </span>
+
+        <strong>
+          When in doubt, stop and verify before you act.
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- MODAL -->
+
+  @if (selectedItem) {
+
+    <div
+      class="awareness-modal-backdrop"
+      (click)="closeItem()"
+    >
+
+      <article
+        class="awareness-modal"
+        (click)="$event.stopPropagation()"
+      >
+
+        <button
+          type="button"
+          class="modal-close"
+          aria-label="Close"
+          (click)="closeItem()"
+        >
+          ×
+        </button>
+
+
+        <div class="modal-icon">
+          {{ selectedItem.icon }}
+        </div>
+
+
+        <span class="modal-category">
+          {{ selectedItem.category }}
+        </span>
+
+
+        <h3>
+          {{ selectedItem.title }}
+        </h3>
+
+
+        <p class="modal-summary">
+          {{ selectedItem.summary }}
+        </p>
+
+
+        <div class="modal-details">
+
+          @for (detail of selectedItem.details; track detail) {
+
+            <div class="detail-item">
+
+              <span class="detail-check">
+                ✓
+              </span>
+
+              <span>
+                {{ detail }}
+              </span>
+
+            </div>
+
+          }
+
+        </div>
+
+
+        <button
+          type="button"
+          class="modal-close-button"
+          (click)="closeItem()"
+        >
+          Close
+        </button>
+
+      </article>
+
+    </div>
+
+  }
+
+</section>

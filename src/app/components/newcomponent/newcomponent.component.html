@@ -1,0 +1,186 @@
+<section class="news-section" id="news">
+
+  <div class="news-container">
+
+    <!-- SECTION HEADER -->
+    <div class="news-header">
+
+      <div class="news-heading">
+        <span class="section-kicker">
+          STAY INFORMED
+        </span>
+
+        <h2>Latest News</h2>
+
+        <p>
+          Stay connected with the latest updates, achievements
+          and initiatives from Fujitec India.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="view-all-button"
+        (click)="openNews(news[0])"
+      >
+        <span>View All News</span>
+        <span class="arrow">→</span>
+      </button>
+
+    </div>
+
+
+    <!-- FEATURED NEWS -->
+    <article
+      class="featured-news"
+      (click)="openNews(news[0])"
+      tabindex="0"
+      (keydown.enter)="openNews(news[0])"
+    >
+
+      <div class="featured-accent"></div>
+
+      <div class="featured-top">
+        <span class="featured-label">
+          FEATURED NEWS
+        </span>
+
+        <span class="featured-date">
+          {{ news[0].date }}
+        </span>
+      </div>
+
+      <div class="featured-content">
+
+        <div class="featured-category">
+          {{ news[0].category }}
+        </div>
+
+        <h3>
+          {{ news[0].title }}
+        </h3>
+
+        <p>
+          {{ news[0].description }}
+        </p>
+
+        <span class="read-more">
+          Read Full Story
+          <span>→</span>
+        </span>
+
+      </div>
+
+    </article>
+
+
+    <!-- NEWS CARDS -->
+    <div class="news-grid">
+
+      @for (item of news.slice(1); track item.title) {
+
+        <article
+          class="news-card"
+          (click)="openNews(item)"
+          tabindex="0"
+          (keydown.enter)="openNews(item)"
+        >
+
+          <div class="news-card-header">
+
+            <span class="news-category">
+              {{ item.category }}
+            </span>
+
+            <span class="news-date">
+              {{ item.date }}
+            </span>
+
+          </div>
+
+          <div class="news-card-content">
+
+            <h3>
+              {{ item.title }}
+            </h3>
+
+            <p>
+              {{ item.description }}
+            </p>
+
+          </div>
+
+          <div class="news-card-footer">
+
+            <span>Read More</span>
+
+            <span class="card-arrow">
+              →
+            </span>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  </div>
+
+
+  <!-- NEWS MODAL -->
+  @if (selectedNews) {
+
+    <div
+      class="news-modal-backdrop"
+      (click)="closeNews()"
+    >
+
+      <article
+        class="news-modal"
+        (click)="$event.stopPropagation()"
+      >
+
+        <button
+          type="button"
+          class="modal-close"
+          (click)="closeNews()"
+          aria-label="Close news"
+        >
+          ×
+        </button>
+
+        <div class="modal-accent"></div>
+
+        <span class="modal-category">
+          {{ selectedNews.category }}
+        </span>
+
+        <span class="modal-date">
+          {{ selectedNews.date }}
+        </span>
+
+        <h3>
+          {{ selectedNews.title }}
+        </h3>
+
+        <p>
+          {{ selectedNews.description }}
+        </p>
+
+        <button
+          type="button"
+          class="modal-close-button"
+          (click)="closeNews()"
+        >
+          Close
+        </button>
+
+      </article>
+
+    </div>
+
+  }
+
+</section>

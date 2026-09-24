@@ -1,0 +1,215 @@
+<section class="events-section" id="events">
+
+  <div class="events-container">
+
+    <!-- =====================================================
+         SECTION HEADER
+         ===================================================== -->
+
+    <div class="events-header">
+
+      <div class="events-heading">
+
+        <span class="section-kicker">
+          WHAT'S HAPPENING
+        </span>
+
+        <h2>
+          Upcoming Events
+        </h2>
+
+        <p>
+          Discover upcoming events, programmes and activities
+          happening across Fujitec India.
+        </p>
+
+      </div>
+
+      <div class="events-header-note">
+        <span class="note-line"></span>
+        <span>Stay connected</span>
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         EVENTS GRID
+         ===================================================== -->
+
+    <div class="events-grid">
+
+      @for (event of events; track event.title) {
+
+        <article
+          class="event-card"
+          (click)="openEvent(event)"
+          tabindex="0"
+          (keydown.enter)="openEvent(event)"
+        >
+
+          <!-- DATE -->
+
+          <div class="event-date">
+
+            <span class="event-day">
+              {{ event.day }}
+            </span>
+
+            <span class="event-month">
+              {{ event.month }}
+            </span>
+
+            <span class="event-year">
+              {{ event.year }}
+            </span>
+
+          </div>
+
+
+          <!-- CONTENT -->
+
+          <div class="event-content">
+
+            <div class="event-top">
+
+              <span class="event-category">
+                {{ event.category }}
+              </span>
+
+              <span class="event-arrow">
+                ↗
+              </span>
+
+            </div>
+
+            <h3>
+              {{ event.title }}
+            </h3>
+
+            <p>
+              {{ event.description }}
+            </p>
+
+
+            <div class="event-meta">
+
+              <span>
+                <strong>Location</strong>
+                {{ event.location }}
+              </span>
+
+              <span>
+                <strong>Time</strong>
+                {{ event.time }}
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       EVENT DETAIL MODAL
+       ===================================================== -->
+
+  @if (selectedEvent) {
+
+    <div
+      class="event-modal-backdrop"
+      (click)="closeEvent()"
+    >
+
+      <article
+        class="event-modal"
+        (click)="$event.stopPropagation()"
+      >
+
+        <button
+          type="button"
+          class="modal-close"
+          (click)="closeEvent()"
+          aria-label="Close event"
+        >
+          ×
+        </button>
+
+
+        <!-- DATE -->
+
+        <div class="modal-date">
+
+          <span class="modal-day">
+            {{ selectedEvent.day }}
+          </span>
+
+          <div>
+            <span class="modal-month">
+              {{ selectedEvent.month }}
+            </span>
+
+            <span class="modal-year">
+              {{ selectedEvent.year }}
+            </span>
+          </div>
+
+        </div>
+
+
+        <span class="modal-category">
+          {{ selectedEvent.category }}
+        </span>
+
+
+        <h3>
+          {{ selectedEvent.title }}
+        </h3>
+
+
+        <p>
+          {{ selectedEvent.description }}
+        </p>
+
+
+        <div class="modal-information">
+
+          <div>
+            <span>LOCATION</span>
+            <strong>
+              {{ selectedEvent.location }}
+            </strong>
+          </div>
+
+          <div>
+            <span>TIME</span>
+            <strong>
+              {{ selectedEvent.time }}
+            </strong>
+          </div>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="modal-close-button"
+          (click)="closeEvent()"
+        >
+          Close
+        </button>
+
+      </article>
+
+    </div>
+
+  }
+
+</section>

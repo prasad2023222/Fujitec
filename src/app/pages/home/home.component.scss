@@ -1173,3 +1173,54 @@
     }
   
   }
+
+  .hero-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+
+  background: rgba(20, 20, 20, 0.35);
+
+  color: #ffffff;
+
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1;
+
+  transform: translateY(-50%);
+
+  cursor: pointer;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.hero-arrow:hover {
+  border-color: #ffffff;
+  background: #c8102e;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.hero-arrow-left {
+  left: 24px;
+}
+
+.hero-arrow-right {
+  right: 24px;
+}

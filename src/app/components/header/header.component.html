@@ -1,121 +1,155 @@
 <header class="site-header">
 
-    <div class="header-inner">
-  
-      <!-- BRAND -->
-      <a class="brand" href="#home" (click)="closeMobileMenu()">
-  
-        <img
-          src="/assets/fujitec-logo.png"
-          alt="Fujitec"
-          class="brand-logo"
-        />
-  
-        <span class="brand-divider"></span>
-  
-        <span class="brand-title">
-          CONFLUENCE
-        </span>
-  
-      </a>
-  
-  
-      <!-- DESKTOP NAVIGATION -->
-      <nav class="desktop-navigation" aria-label="Main navigation">
-  
-        <a href="#home" class="nav-link active">
-          Home
-        </a>
-  
-        <a href="#quick-access" class="nav-link">
-          Quick Access
-        </a>
-  
-        <a href="#news" class="nav-link">
-          News
-        </a>
-  
-        <a href="#events" class="nav-link">
-          Events
-        </a>
-  
-        <a href="#it-awareness" class="nav-link">
-          IT Awareness
-        </a>
-  
-        <a href="#organization" class="nav-link">
-          Organization
-        </a>
-  
-      </nav>
-  
-  
-      <!-- RIGHT ACTIONS -->
-      <div class="header-actions">
-  
-        <button
-          type="button"
-          class="search-button"
-          aria-label="Search"
-        >
-          <span class="search-icon">⌕</span>
-          <span class="search-text">Search</span>
-        </button>
-  
-        <button
-          type="button"
-          class="login-button"
-        >
-          Login
-        </button>
-  
-        <!-- MOBILE MENU -->
-        <button
-          type="button"
-          class="menu-button"
-          (click)="toggleMobileMenu()"
-          [attr.aria-expanded]="mobileMenuOpen"
-          aria-label="Toggle navigation"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-  
-      </div>
-  
-    </div>
-  
-  
-    <!-- MOBILE NAVIGATION -->
-    <nav
-      class="mobile-navigation"
-      [class.open]="mobileMenuOpen"
-      aria-label="Mobile navigation"
+  <div class="header-inner">
+
+    <!-- BRAND -->
+    <a
+      class="brand"
+      routerLink="/home"
+      (click)="closeMobileMenu()"
     >
-  
-      <a href="#home" (click)="closeMobileMenu()">Home</a>
-  
-      <a href="#quick-access" (click)="closeMobileMenu()">
+      <img
+        src="/assets/fujitec_logo.png"
+        alt="Fujitec"
+        class="brand-logo"
+      />
+
+      <span class="brand-divider"></span>
+
+      <span class="brand-title">CONFLUENCE</span>
+    </a>
+
+
+    <!-- DESKTOP NAV -->
+    <nav class="desktop-navigation" aria-label="Main navigation">
+
+      <a
+        routerLink="/home"
+        class="nav-link"
+        (click)="closeMobileMenu()"
+      >
+        Home
+      </a>
+
+      <a
+        routerLink="/home"
+        fragment="quick-access"
+        class="nav-link"
+        (click)="closeMobileMenu()"
+      >
         Quick Access
       </a>
-  
-      <a href="#news" (click)="closeMobileMenu()">
+
+      <a
+        routerLink="/home"
+        fragment="news"
+        class="nav-link"
+        (click)="closeMobileMenu()"
+      >
         News
       </a>
-  
-      <a href="#events" (click)="closeMobileMenu()">
+
+      <a
+        routerLink="/home"
+        fragment="events"
+        class="nav-link"
+        (click)="closeMobileMenu()"
+      >
         Events
       </a>
-  
-      <a href="#it-awareness" (click)="closeMobileMenu()">
+
+      <a
+        routerLink="/home"
+        fragment="it-awareness"
+        class="nav-link"
+        (click)="closeMobileMenu()"
+      >
         IT Awareness
       </a>
-  
-      <a href="#organization" (click)="closeMobileMenu()">
-        Organization
-      </a>
-  
+
     </nav>
-  
-  </header>
+
+
+    <!-- RIGHT ACTIONS -->
+    <div class="header-actions">
+
+      <button
+        type="button"
+        class="search-button"
+      >
+        <span class="search-icon">⌕</span>
+        <span class="search-text">Search</span>
+      </button>
+
+      <button
+        type="button"
+        class="login-button"
+      >
+        Login
+      </button>
+
+      <button
+        type="button"
+        class="menu-button"
+        (click)="toggleMobileMenu()"
+        [attr.aria-expanded]="mobileMenuOpen"
+        aria-label="Toggle navigation"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- MOBILE NAV -->
+  <nav
+    class="mobile-navigation"
+    [class.open]="mobileMenuOpen"
+  >
+
+    <a
+      routerLink="/home"
+      (click)="closeMobileMenu()"
+    >
+      Home
+    </a>
+
+    <a
+      routerLink="/home"
+      fragment="quick-access"
+      (click)="closeMobileMenu()"
+    >
+      Quick Access
+    </a>
+
+    <a
+      routerLink="/home"
+      fragment="news"
+      (click)="closeMobileMenu()"
+    >
+      News
+    </a>
+
+    <a
+      routerLink="/home"
+      fragment="events"
+      (click)="closeMobileMenu()"
+    >
+      Events
+    </a>
+
+    <a
+      routerLink="/home"
+      fragment="it-awareness"
+      (click)="closeMobileMenu()"
+    >
+      IT Awareness
+    </a>
+
+  </nav>
+
+</header>

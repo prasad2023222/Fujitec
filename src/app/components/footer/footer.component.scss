@@ -1,0 +1,300 @@
+/* =========================================================
+   FUJITEC CONFLUENCE
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+  width: 100%;
+  background: #17232e;
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   MAIN FOOTER
+   ========================================================= */
+
+.footer-main {
+  width: min(1400px, calc(100% - 120px));
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+
+  gap: 70px;
+
+  padding: 65px 0 55px;
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.footer-brand {
+  padding-right: 30px;
+}
+
+
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+
+.footer-logo {
+  width: 115px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+.footer-divider {
+  width: 1px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+
+.footer-title {
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  letter-spacing: 4px;
+}
+
+
+.footer-description {
+  max-width: 300px;
+
+  margin: 25px 0 0;
+
+  color: #aebbc6;
+
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   COLUMNS
+   ========================================================= */
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.footer-column h3 {
+  margin: 0 0 22px;
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+
+.footer-column button,
+.footer-column span,
+.footer-column a {
+  margin-bottom: 13px;
+
+  color: #aebbc6;
+
+  font-family: inherit;
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   FOOTER BUTTONS
+   ========================================================= */
+
+.footer-column button {
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  appearance: none;
+}
+
+
+.footer-column button:hover,
+.footer-column a:hover {
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   SUPPORT
+   ========================================================= */
+
+.support-column a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #ffffff;
+
+  font-weight: 600;
+}
+
+
+.support-arrow {
+  margin: 0 !important;
+
+  color: #c8102e;
+
+  font-size: 17px;
+}
+
+
+.employee-login {
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+
+  padding: 10px 17px !important;
+
+  border: 1px solid #53616d !important;
+  border-radius: 5px !important;
+
+  color: #ffffff !important;
+
+  font-size: 12px !important;
+  font-weight: 600 !important;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.employee-login:hover {
+  border-color: #c8102e !important;
+
+  background: #c8102e !important;
+}
+
+
+/* =========================================================
+   BOTTOM
+   ========================================================= */
+
+.footer-bottom {
+  width: min(1400px, calc(100% - 120px));
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px 0;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  color: #7f8d98;
+
+  font-size: 11px;
+}
+
+
+.back-top {
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #aebbc6;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.back-top:hover {
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .footer-main {
+    width: calc(100% - 60px);
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 45px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    width: calc(100% - 60px);
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .footer-main {
+    width: calc(100% - 40px);
+
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    padding: 45px 0;
+  }
+
+
+  .footer-brand {
+    padding-right: 0;
+  }
+
+
+  .footer-bottom {
+    width: calc(100% - 40px);
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 18px 0;
+  }
+
+}

@@ -55,3 +55,24 @@ video {
   display: block;
   max-width: 100%;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+#home,
+#quick-access {
+  scroll-margin-top: 85px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#home,
+#quick-access,
+#news,
+#events,
+#it-awareness {
+  scroll-margin-top: 90px;
+}

@@ -1,10 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuickAccessComponent } from '../../components/quick-access/quick-access.component';
+import { NewcomponentComponent } from '../../components/newcomponent/newcomponent.component';
+import { EventsComponent } from '../../components/events/events.component';
+import { ItAwarenessComponent } from '../../components/it-awareness/it-awareness.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,QuickAccessComponent],
+  imports: [CommonModule,QuickAccessComponent,NewcomponentComponent,EventsComponent,ItAwarenessComponent,FooterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

@@ -1,12 +1,6 @@
-
-
 <main class="home-page">
 
-  <!-- =====================================================
-       HERO
-       ===================================================== -->
-
-  <section class="hero">
+  <section class="hero" id="home">
 
     <div class="hero-media">
 
@@ -16,48 +10,24 @@
         class="hero-image"
       />
 
-      <!-- Readability overlay -->
       <div class="hero-overlay"></div>
 
-      <!-- HERO CONTENT -->
-      <div class="hero-content">
-
-        <span class="hero-eyebrow">
-          FUJITEC INDIA
-        </span>
-
-        <h1>
-          Moving People.<br />
-          Elevating Lives.
-        </h1>
-
-        <p>
-          Connecting people, technology and progress.
-        </p>
-
-      </div>
-
-      <!-- PREVIOUS -->
       <button
         type="button"
         class="hero-arrow hero-arrow-left"
         (click)="previousHeroSlide()"
-        aria-label="Previous image"
       >
         ‹
       </button>
 
-      <!-- NEXT -->
       <button
         type="button"
         class="hero-arrow hero-arrow-right"
         (click)="nextHeroSlide()"
-        aria-label="Next image"
       >
         ›
       </button>
 
-      <!-- CONTROLS -->
       <div class="hero-controls">
 
         <div class="hero-indicators">
@@ -68,7 +38,6 @@
             class="hero-indicator"
             [class.active]="i === currentHeroSlide"
             (click)="goToHeroSlide(i)"
-            [attr.aria-label]="'Go to slide ' + (i + 1)"
           ></button>
 
         </div>
@@ -84,6 +53,28 @@
     </div>
 
   </section>
-  <app-quick-access></app-quick-access>
+
+
+  <section id="quick-access">
+    <app-quick-access></app-quick-access>
+  </section>
+
+
+  <section id="news">
+    <app-news></app-news>
+  </section>
+
+
+  <section id="events">
+    <app-events></app-events>
+  </section>
+
+
+  <section id="it-awareness">
+    <app-it-awareness></app-it-awareness>
+  </section>
+
+
+  <app-footer></app-footer>
 
 </main>
