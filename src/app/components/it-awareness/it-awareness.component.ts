@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
-interface AwarenessItem {
+interface AwarenessMedia {
+  id: number;
+  type: 'image' | 'video';
+  url: string;
   category: string;
-  icon: string;
   title: string;
-  summary: string;
-  details: string[];
+  description: string;
 }
 
 @Component({
@@ -15,99 +16,250 @@ interface AwarenessItem {
   templateUrl: './it-awareness.component.html',
   styleUrl: './it-awareness.component.scss'
 })
-export class ItAwarenessComponent {
+export class ItAwarenessComponent implements OnInit, OnDestroy {
 
-  awarenessItems: AwarenessItem[] = [
+  /* =========================================================
+     IT AWARENESS MEDIA
+     ========================================================= */
+
+  awarenessMedia: AwarenessMedia[] = [
 
     {
+      id: 1,
+      type: 'image',
+      url: 'assets/it-awareness/it-awareness-1.jpg',
       category: 'CYBER SECURITY',
-      icon: '🔐',
-      title: 'Protect Your Password',
-      summary: 'Use strong and unique passwords for your work accounts.',
-      details: [
-        'Never share your password with anyone.',
-        'Use a strong combination of letters, numbers and special characters.',
-        'Avoid using easily guessable information such as your name or birthday.',
-        'Never reuse your work password for personal accounts.'
-      ]
+      title: 'Protect Your Digital Workplace',
+      description:
+        'Simple security practices help keep our people, devices and company information protected.'
     },
 
     {
-      category: 'EMAIL SECURITY',
-      icon: '✉',
-      title: 'Think Before You Click',
-      summary: 'Be careful when opening unexpected emails, links or attachments.',
-      details: [
-        'Check the sender before opening an email.',
-        'Do not click suspicious links.',
-        'Avoid opening unexpected attachments.',
-        'Report suspicious emails through the appropriate company channel.'
-      ]
-    },
-
-    {
+      id: 2,
+      type: 'image',
+      url: 'assets/it-awareness/it-awareness-2.jpg',
       category: 'DATA PROTECTION',
-      icon: '🛡',
-      title: 'Protect Company Data',
-      summary: 'Handle company information carefully and responsibly.',
-      details: [
-        'Do not share confidential information with unauthorised people.',
-        'Store important files only in approved company locations.',
-        'Lock your computer whenever you leave your desk.',
-        'Avoid transferring company information through personal accounts.'
-      ]
+      title: 'Protect Company Information',
+      description:
+        'Handle company information carefully and make sure sensitive data is shared only through approved channels.'
     },
 
     {
+      id: 3,
+      type: 'video',
+      url: 'assets/it-awareness/it-awareness-video-1.mp4',
+      category: 'SECURITY AWARENESS',
+      title: 'Think Before You Click',
+      description:
+        'Stay alert when opening emails, links and attachments and report anything suspicious.'
+    },
+
+    {
+      id: 4,
+      type: 'image',
+      url: 'assets/it-awareness/it-awareness-3.jpg',
       category: 'DEVICE SECURITY',
-      icon: '💻',
-      title: 'Keep Your Device Secure',
-      summary: 'Simple habits can help protect your workstation and company network.',
-      details: [
-        'Keep your operating system and applications updated.',
-        'Do not install unauthorised software.',
-        'Use company-approved security tools.',
-        'Report unusual device behaviour to the IT team.'
-      ]
+      title: 'Keep Your Devices Secure',
+      description:
+        'Keep your workstation protected and use company-approved software and security tools.'
     },
 
     {
+      id: 5,
+      type: 'video',
+      url: 'assets/it-awareness/it-awareness-video-2.mp4',
       category: 'REMOTE WORK',
-      icon: '🌐',
-      title: 'Stay Secure While Working Remotely',
-      summary: 'Follow security practices whenever you work outside the office.',
-      details: [
-        'Use approved company VPN or remote-access tools.',
-        'Avoid accessing confidential information on public computers.',
-        'Be careful when using public Wi-Fi networks.',
-        'Keep company devices with you and secured at all times.'
-      ]
+      title: 'Stay Secure Wherever You Work',
+      description:
+        'Follow safe security practices whenever you work remotely or access company resources outside the office.'
     },
 
     {
-      category: 'AWARENESS',
-      icon: '💡',
-      title: 'Stay IT Aware',
-      summary: 'Security is everyone’s responsibility.',
-      details: [
-        'Stay aware of common cybersecurity threats.',
-        'Follow company IT policies and guidelines.',
-        'Ask the IT team when you are unsure about a security issue.',
-        'Report suspicious activity as soon as possible.'
-      ]
+      id: 6,
+      type: 'image',
+      url: 'assets/it-awareness/it-awareness-4.jpg',
+      category: 'IT AWARENESS',
+      title: 'Security Is Everyone’s Responsibility',
+      description:
+        'Stay informed, follow company IT guidelines and speak to the IT team whenever you are unsure.'
     }
 
   ];
 
-  selectedItem: AwarenessItem | null = null;
 
-  openItem(item: AwarenessItem): void {
-    this.selectedItem = item;
-    document.body.style.overflow = 'hidden';
+  /* =========================================================
+     SLIDESHOW STATE
+     ========================================================= */
+
+  currentMediaIndex = 0;
+
+  private slideshowTimer: ReturnType<typeof setTimeout> | null = null;
+
+  /*
+   * Images stay for 7 seconds.
+   * Videos are controlled by the video's "ended" event.
+   */
+  readonly imageDuration = 7000;
+
+
+  /* =========================================================
+     INITIALIZE
+     ========================================================= */
+
+  ngOnInit(): void {
+    this.startSlideshow();
   }
 
-  closeItem(): void {
-    this.selectedItem = null;
-    document.body.style.overflow = '';
+
+  /* =========================================================
+     START SLIDESHOW
+     ========================================================= */
+
+  startSlideshow(): void {
+
+    this.stopSlideshow();
+
+    if (this.awarenessMedia.length === 0) {
+      return;
+    }
+
+    const currentMedia =
+      this.awarenessMedia[this.currentMediaIndex];
+
+    /*
+     * IMPORTANT:
+     *
+     * If current slide is a video,
+     * DO NOT start a timer.
+     *
+     * The video itself will call nextMedia()
+     * when it reaches the end.
+     */
+    if (currentMedia.type === 'video') {
+      return;
+    }
+
+    /*
+     * Current slide is an image.
+     * Wait 7 seconds before moving to next slide.
+     */
+    this.slideshowTimer = setTimeout(() => {
+
+      this.nextMedia();
+
+    }, this.imageDuration);
   }
+
+
+  /* =========================================================
+     STOP SLIDESHOW
+     ========================================================= */
+
+  stopSlideshow(): void {
+
+    if (this.slideshowTimer) {
+
+      clearTimeout(this.slideshowTimer);
+
+      this.slideshowTimer = null;
+    }
+  }
+
+
+  /* =========================================================
+     NEXT MEDIA
+     ========================================================= */
+
+  nextMedia(): void {
+
+    if (this.awarenessMedia.length === 0) {
+      return;
+    }
+
+    /*
+     * Always clear the previous timer first.
+     */
+    this.stopSlideshow();
+
+    this.currentMediaIndex =
+      (this.currentMediaIndex + 1) %
+      this.awarenessMedia.length;
+
+    /*
+     * Start timing only if the new slide
+     * is an image.
+     *
+     * If it is a video, startSlideshow()
+     * intentionally does nothing.
+     */
+    this.startSlideshow();
+  }
+
+
+  /* =========================================================
+     PREVIOUS MEDIA
+     ========================================================= */
+
+  previousMedia(): void {
+
+    if (this.awarenessMedia.length === 0) {
+      return;
+    }
+
+    this.stopSlideshow();
+
+    this.currentMediaIndex =
+      this.currentMediaIndex === 0
+        ? this.awarenessMedia.length - 1
+        : this.currentMediaIndex - 1;
+
+    this.startSlideshow();
+  }
+
+
+  /* =========================================================
+     GO TO SPECIFIC SLIDE
+     ========================================================= */
+
+  goToMedia(index: number): void {
+
+    if (
+      index < 0 ||
+      index >= this.awarenessMedia.length
+    ) {
+      return;
+    }
+
+    this.stopSlideshow();
+
+    this.currentMediaIndex = index;
+
+    this.startSlideshow();
+  }
+
+
+  /* =========================================================
+     VIDEO FINISHED
+     ========================================================= */
+
+  onVideoEnded(): void {
+
+    /*
+     * The video has completely finished.
+     * Now move to the next media.
+     */
+    this.nextMedia();
+  }
+
+
+  /* =========================================================
+     CLEANUP
+     ========================================================= */
+
+  ngOnDestroy(): void {
+
+    this.stopSlideshow();
+
+  }
+
 }

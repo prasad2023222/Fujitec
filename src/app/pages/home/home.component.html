@@ -1,8 +1,13 @@
 <main class="home-page">
 
+
+  <!-- HERO -->
+
   <section class="hero" id="home">
 
+
     <div class="hero-media">
+
 
       <img
         [src]="heroImages[currentHeroSlide]"
@@ -10,7 +15,11 @@
         class="hero-image"
       />
 
+
       <div class="hero-overlay"></div>
+
+
+
 
       <button
         type="button"
@@ -20,6 +29,9 @@
         ‹
       </button>
 
+
+
+
       <button
         type="button"
         class="hero-arrow hero-arrow-right"
@@ -28,53 +40,210 @@
         ›
       </button>
 
+
+
+
+
       <div class="hero-controls">
+
 
         <div class="hero-indicators">
 
+
           <button
+
             *ngFor="let image of heroImages; let i = index"
+
             type="button"
+
             class="hero-indicator"
+
             [class.active]="i === currentHeroSlide"
+
             (click)="goToHeroSlide(i)"
+
           ></button>
+
 
         </div>
 
+
+
+
+
         <span class="hero-counter">
+
           {{ currentHeroSlide + 1 }}
+
           <span>/</span>
+
           {{ heroImages.length }}
+
         </span>
+
+
 
       </div>
 
+
+
     </div>
 
+
   </section>
+
+
+
+
+
+
+
+
+  <!-- QUICK ACCESS -->
 
 
   <section id="quick-access">
+
     <app-quick-access></app-quick-access>
+
   </section>
+
+
+
+
+
+
+
+  <!-- NEWS -->
 
 
   <section id="news">
+
     <app-news></app-news>
+
   </section>
+
+
+
+
+
+
+
+  <!-- EVENTS -->
 
 
   <section id="events">
+
     <app-events></app-events>
+
   </section>
+
+
+
+
+
+
+
+  <!-- ================================
+       EMPLOYEE HUB AREA
+       Appears based on Header selection
+  ================================= -->
+
+
+
+  @if(employeeSection === 'celebration'){
+
+
+    <section id="employee-celebrations">
+
+
+      <app-employee-celebration></app-employee-celebration>
+
+
+    </section>
+
+
+  }
+
+
+
+
+
+
+  @if(employeeSection === 'recognition'){
+
+
+    <section id="employee-recognition">
+
+
+      <app-employee-recognition></app-employee-recognition>
+
+
+    </section>
+
+
+  }
+
+  @if(employeeSection === 'support'){
+
+    <section id="employee-support">
+  
+      <app-employee-support></app-employee-support>
+  
+    </section>
+  
+  }
+
+  @if(employeeSection === 'suggestion'){
+
+    <section id="suggestion-box">
+  
+      <app-suggestion-box></app-suggestion-box>
+  
+    </section>
+  
+  }
+
+
+
+
+
+
+
+
+  <!-- FUJITEC AT A GLANCE -->
+
+
+  <app-fujitec-glance></app-fujitec-glance>
+
+
+
+
+
+
+
+  <!-- IT AWARENESS -->
 
 
   <section id="it-awareness">
+
+
     <app-it-awareness></app-it-awareness>
+
+
   </section>
 
 
+
+
+
+
+
+  <!-- FOOTER -->
+
+
   <app-footer></app-footer>
+
+
 
 </main>

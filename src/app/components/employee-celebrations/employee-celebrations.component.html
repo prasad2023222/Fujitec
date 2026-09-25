@@ -1,0 +1,397 @@
+<section class="celebration-section">
+
+
+    <!-- HEADER -->
+  
+    <div class="header">
+  
+  
+      <div>
+  
+        <span class="kicker">
+          PEOPLE & CULTURE
+        </span>
+  
+  
+        <h2>
+          Employee Celebrations
+        </h2>
+  
+  
+        <p>
+          Celebrate birthdays and milestones across Fujitec.
+        </p>
+  
+  
+      </div>
+  
+  
+  
+      <button
+        class="calendar-button"
+        (click)="openCalendar()">
+  
+        📅 View Calendar
+  
+      </button>
+  
+  
+    </div>
+  
+  
+  
+  
+  
+    <!-- EMPTY STATE -->
+  
+    @if(selectedCelebrations.length === 0){
+  
+  
+      <div class="empty-state">
+  
+  
+        <div class="empty-icon">
+          🎉
+        </div>
+  
+  
+        <h3>
+          No celebrations selected
+        </h3>
+  
+  
+        <p>
+          Select a date from the calendar to view employee celebrations.
+        </p>
+  
+  
+      </div>
+  
+  
+    }
+  
+  
+  
+  
+  
+  
+  
+    <!-- EMPLOYEE DISPLAY -->
+  
+  
+    @if(selectedCelebrations.length > 0){
+  
+  
+      <h3 class="celebration-title">
+  
+        🎉 Celebrations on {{selectedDate}}
+  
+      </h3>
+  
+  
+  
+  
+  
+      <div class="employee-grid">
+  
+  
+        @for(emp of selectedCelebrations; track emp.name){
+  
+  
+  
+          <div class="employee-card">
+  
+  
+  
+            <img
+              [src]="emp.photo"
+              [alt]="emp.name"
+            />
+  
+  
+  
+            <div class="employee-info">
+  
+  
+  
+              <h3>
+                {{emp.name}}
+              </h3>
+  
+  
+  
+  
+              <p>
+  
+  
+                @if(emp.type === "Birthday"){
+  
+                  🎂 Birthday
+  
+  
+                }
+  
+                @else{
+  
+  
+                  🎉 {{emp.type}}
+  
+  
+                }
+  
+  
+              </p>
+  
+  
+  
+  
+              <span>
+                🏢 {{emp.department}}
+              </span>
+  
+  
+  
+              <span>
+                📍 {{emp.location}}
+              </span>
+  
+  
+  
+  
+  
+              <button
+                (click)="sendWish(emp)">
+  
+                Send Wishes
+  
+              </button>
+  
+  
+  
+  
+            </div>
+  
+  
+  
+          </div>
+  
+  
+        }
+  
+  
+      </div>
+  
+  
+    }
+  
+  
+  
+  </section>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- CALENDAR POPUP -->
+  
+  
+  @if(showCalendar){
+  
+  
+  
+  <div class="overlay">
+  
+  
+  
+    <div class="calendar-popup">
+  
+  
+  
+      <button
+        class="close"
+        (click)="closeCalendar()">
+  
+        ×
+  
+      </button>
+  
+  
+  
+  
+  
+      <h2>
+        {{monthName}}
+      </h2>
+  
+  
+  
+  
+  
+  
+      <div class="calendar-grid">
+  
+  
+  
+        @for(day of days; track day){
+  
+  
+  
+          <button
+  
+            [class.active]="selectedDate === day"
+  
+            [class.event]="hasCelebration(day)"
+  
+            (click)="selectDay(day)"
+  
+          >
+  
+  
+  
+            {{day}}
+  
+  
+  
+            @if(hasCelebration(day)){
+  
+  
+              <span>
+                🎉
+              </span>
+  
+  
+            }
+  
+  
+  
+          </button>
+  
+  
+  
+        }
+  
+  
+  
+      </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <!-- SELECTED DATE RESULTS INSIDE CALENDAR -->
+  
+  
+  
+      @if(selectedCelebrations.length > 0){
+  
+  
+  
+        <h3>
+  
+          Celebrations on {{selectedDate}}
+  
+        </h3>
+  
+  
+  
+  
+  
+        <div class="popup-grid">
+  
+  
+  
+          @for(emp of selectedCelebrations; track emp.name){
+  
+  
+  
+  
+  
+            <div class="employee-card small">
+  
+  
+  
+  
+  
+              <img
+                [src]="emp.photo"
+                [alt]="emp.name"
+              />
+  
+  
+  
+  
+  
+  
+              <div>
+  
+  
+  
+                <h4>
+                  {{emp.name}}
+                </h4>
+  
+  
+  
+  
+                <p>
+                  {{emp.type}}
+                </p>
+  
+  
+  
+  
+                <span>
+                  {{emp.department}}
+                </span>
+  
+  
+  
+                <span>
+                  📍 {{emp.location}}
+                </span>
+  
+  
+  
+              </div>
+  
+  
+  
+  
+            </div>
+  
+  
+  
+  
+  
+          }
+  
+  
+  
+        </div>
+  
+  
+  
+      }
+  
+  
+  
+  
+  
+  
+    </div>
+  
+  
+  
+  </div>
+  
+  
+  
+  }

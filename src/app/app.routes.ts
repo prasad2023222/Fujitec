@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { EmployeeHubComponent }
+from './pages/employee-hub/employee-hub.component';
 
 export const routes: Routes = [
   {
@@ -34,5 +36,9 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: 'home'
-  }
+  },
+{
+ path:'employee-hub',
+ component:EmployeeHubComponent
+}
 ];

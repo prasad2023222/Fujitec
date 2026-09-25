@@ -1,0 +1,335 @@
+<section class="suggestion-section">
+
+    <div class="suggestion-container">
+  
+      <!-- HEADER -->
+  
+      <div class="section-header">
+  
+        <div>
+  
+          <span class="section-kicker">
+            EMPLOYEE HUB
+          </span>
+  
+          <h2>
+            Suggestion Box
+          </h2>
+  
+          <p>
+            Your ideas can help us build a better workplace.
+          </p>
+  
+        </div>
+  
+        <div class="idea-icon">
+          💡
+        </div>
+  
+      </div>
+  
+  
+      <!-- SUCCESS STATE -->
+  
+      @if (submitted) {
+  
+        <div class="success-card">
+  
+          <div class="success-icon">
+            ✓
+          </div>
+  
+          <span class="success-kicker">
+            SUGGESTION RECEIVED
+          </span>
+  
+          <h3>
+            Thank you for sharing your idea!
+          </h3>
+  
+          <p>
+            Your suggestion has been recorded and will be reviewed
+            by the appropriate team.
+          </p>
+  
+          <button
+            type="button"
+            class="primary-button"
+            (click)="writeAnotherSuggestion()"
+          >
+            Share Another Idea
+            <span>→</span>
+          </button>
+  
+        </div>
+  
+      }
+  
+  
+      <!-- FORM -->
+  
+      @if (!submitted) {
+  
+        <div class="suggestion-layout">
+  
+          <!-- LEFT INFORMATION -->
+  
+          <div class="idea-panel">
+  
+            <div class="large-icon">
+              💡
+            </div>
+  
+            <span class="panel-kicker">
+              HAVE AN IDEA?
+            </span>
+  
+            <h3>
+              Make your voice heard.
+            </h3>
+  
+            <p>
+              Whether it's a process improvement, a workplace idea,
+              or something that can make everyday work easier,
+              we'd like to hear from you.
+            </p>
+  
+  
+            <div class="idea-points">
+  
+              <div class="idea-point">
+  
+                <span>✓</span>
+  
+                <div>
+                  <strong>
+                    Every idea matters
+                  </strong>
+  
+                  <small>
+                    Share ideas big or small.
+                  </small>
+                </div>
+  
+              </div>
+  
+  
+              <div class="idea-point">
+  
+                <span>✓</span>
+  
+                <div>
+                  <strong>
+                    Be constructive
+                  </strong>
+  
+                  <small>
+                    Help us understand your idea clearly.
+                  </small>
+                </div>
+  
+              </div>
+  
+  
+              <div class="idea-point">
+  
+                <span>✓</span>
+  
+                <div>
+                  <strong>
+                    Stay anonymous
+                  </strong>
+  
+                  <small>
+                    Submit without revealing your identity.
+                  </small>
+                </div>
+  
+              </div>
+  
+            </div>
+  
+          </div>
+  
+  
+          <!-- FORM CARD -->
+  
+          <div class="form-card">
+  
+            <div class="form-header">
+  
+              <div>
+  
+                <span>
+                  SHARE YOUR IDEA
+                </span>
+  
+                <h3>
+                  What would you like to improve?
+                </h3>
+  
+              </div>
+  
+            </div>
+  
+  
+            <!-- CATEGORY -->
+  
+            <div class="form-group">
+  
+              <label for="category">
+                Category
+              </label>
+  
+              <select
+                id="category"
+                [(ngModel)]="suggestionCategory"
+              >
+  
+                <option value="">
+                  Select a category
+                </option>
+  
+                <option value="Workplace">
+                  Workplace
+                </option>
+  
+                <option value="Process Improvement">
+                  Process Improvement
+                </option>
+  
+                <option value="Technology">
+                  Technology
+                </option>
+  
+                <option value="Employee Experience">
+                  Employee Experience
+                </option>
+  
+                <option value="Other">
+                  Other
+                </option>
+  
+              </select>
+  
+            </div>
+  
+  
+            <!-- SUGGESTION -->
+  
+            <div class="form-group">
+  
+              <label for="suggestion">
+                Your suggestion
+              </label>
+  
+              <textarea
+                id="suggestion"
+                rows="6"
+                maxlength="500"
+                [(ngModel)]="suggestionText"
+                placeholder="Tell us about your idea..."
+              ></textarea>
+  
+              <div class="character-count">
+                {{ suggestionText.length }} / 500
+              </div>
+  
+            </div>
+  
+  
+            <!-- ANONYMOUS -->
+  
+            <label class="anonymous-option">
+  
+              <input
+                type="checkbox"
+                [(ngModel)]="submitAnonymously"
+              />
+  
+              <span class="custom-checkbox"></span>
+  
+              <span class="anonymous-text">
+  
+                <strong>
+                  Submit anonymously
+                </strong>
+  
+                <small>
+                  Your name will not be associated with this suggestion.
+                </small>
+  
+              </span>
+  
+            </label>
+  
+  
+            <!-- SUBMIT -->
+  
+            <button
+              type="button"
+              class="submit-button"
+              [disabled]="!suggestionCategory || !suggestionText.trim()"
+              (click)="submitSuggestion()"
+            >
+  
+              Submit Suggestion
+  
+              <span>→</span>
+  
+            </button>
+  
+          </div>
+  
+        </div>
+  
+      }
+  
+  
+      <!-- STATS -->
+  
+      <div class="suggestion-stats">
+  
+        <div class="stat">
+  
+          <strong>
+            {{ suggestionsSubmitted }}
+          </strong>
+  
+          <span>
+            Suggestions Shared
+          </span>
+  
+        </div>
+  
+  
+        <div class="stat">
+  
+          <strong>
+            {{ ideasUnderReview }}
+          </strong>
+  
+          <span>
+            Ideas Under Review
+          </span>
+  
+        </div>
+  
+  
+        <div class="stat">
+  
+          <strong>
+            {{ ideasImplemented }}
+          </strong>
+  
+          <span>
+            Ideas Implemented
+          </span>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </section>

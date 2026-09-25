@@ -2,12 +2,15 @@
 
   <div class="header-inner">
 
+
     <!-- BRAND -->
+
     <a
       class="brand"
       routerLink="/home"
       (click)="closeMobileMenu()"
     >
+
       <img
         src="/assets/fujitec_logo.png"
         alt="Fujitec"
@@ -16,12 +19,24 @@
 
       <span class="brand-divider"></span>
 
-      <span class="brand-title">CONFLUENCE</span>
+      <span class="brand-title">
+        CONFLUENCE
+      </span>
+
     </a>
 
 
+
+
+
     <!-- DESKTOP NAV -->
-    <nav class="desktop-navigation" aria-label="Main navigation">
+
+    <nav
+      class="desktop-navigation"
+      aria-label="Main navigation"
+    >
+
+
 
       <a
         routerLink="/home"
@@ -30,6 +45,9 @@
       >
         Home
       </a>
+
+
+
 
       <a
         routerLink="/home"
@@ -40,6 +58,9 @@
         Quick Access
       </a>
 
+
+
+
       <a
         routerLink="/home"
         fragment="news"
@@ -48,6 +69,9 @@
       >
         News
       </a>
+
+
+
 
       <a
         routerLink="/home"
@@ -58,35 +82,141 @@
         Events
       </a>
 
+
+
+
+
+
+      <!-- ============================
+           EMPLOYEE HUB DROPDOWN
+      ============================= -->
+
+
+      <div class="employee-dropdown">
+
+
+        <button
+          type="button"
+          class="nav-link dropdown-trigger"
+        >
+
+          Employee Hub
+
+          <span class="dropdown-arrow">
+            ▾
+          </span>
+
+        </button>
+
+
+
+
+        <div class="employee-dropdown-menu">
+
+
+          <button
+            type="button"
+            (click)="openEmployeeSection('celebration')"
+          >
+
+            🎉 Employee Celebrations
+
+          </button>
+
+
+
+
+          <button
+            type="button"
+            (click)="openEmployeeSection('recognition')"
+          >
+
+            🏆 Employee Recognition
+
+          </button>
+
+          <button
+  type="button"
+  (click)="openEmployeeSection('support')"
+>
+  🆘 Employee Support
+</button>
+
+<button
+  type="button"
+  (click)="openEmployeeSection('suggestion')"
+>
+  💡 Suggestion Box
+</button>
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+
       <a
         routerLink="/home"
         fragment="it-awareness"
         class="nav-link"
         (click)="closeMobileMenu()"
       >
+
         IT Awareness
+
       </a>
+
+
+
 
     </nav>
 
 
+
+
+
+
     <!-- RIGHT ACTIONS -->
+
+
     <div class="header-actions">
+
 
       <button
         type="button"
         class="search-button"
       >
-        <span class="search-icon">⌕</span>
-        <span class="search-text">Search</span>
+
+        <span class="search-icon">
+          ⌕
+        </span>
+
+        <span class="search-text">
+          Search
+        </span>
+
       </button>
+
+
+
 
       <button
         type="button"
         class="login-button"
       >
+
         Login
+
       </button>
+
+
+
 
       <button
         type="button"
@@ -95,21 +225,35 @@
         [attr.aria-expanded]="mobileMenuOpen"
         aria-label="Toggle navigation"
       >
+
         <span></span>
         <span></span>
         <span></span>
+
       </button>
 
+
     </div>
+
+
 
   </div>
 
 
+
+
+
+
+
   <!-- MOBILE NAV -->
+
+
   <nav
     class="mobile-navigation"
     [class.open]="mobileMenuOpen"
   >
+
+
 
     <a
       routerLink="/home"
@@ -117,6 +261,8 @@
     >
       Home
     </a>
+
+
 
     <a
       routerLink="/home"
@@ -126,6 +272,8 @@
       Quick Access
     </a>
 
+
+
     <a
       routerLink="/home"
       fragment="news"
@@ -133,6 +281,8 @@
     >
       News
     </a>
+
+
 
     <a
       routerLink="/home"
@@ -142,14 +292,64 @@
       Events
     </a>
 
+
+
+
+
+
+    <!-- MOBILE EMPLOYEE HUB -->
+
+    <div class="employee-dropdown-menu">
+
+      <button
+        type="button"
+        (click)="openEmployeeSection('celebration')"
+      >
+        <span>🎉</span>
+        Employee Celebrations
+      </button>
+    
+      <button
+        type="button"
+        (click)="openEmployeeSection('recognition')"
+      >
+        <span>🏆</span>
+        Employee Recognition
+      </button>
+    
+      <button
+        type="button"
+        (click)="openEmployeeSection('support')"
+      >
+        <span>🆘</span>
+        Employee Support
+      </button>
+
+      <button
+  type="button"
+  (click)="openEmployeeSection('suggestion')"
+>
+  <span>💡</span>
+  Suggestion Box
+</button>
+    
+    </div>
+
     <a
       routerLink="/home"
       fragment="it-awareness"
       (click)="closeMobileMenu()"
     >
+
       IT Awareness
+
     </a>
 
+
+
+
   </nav>
+
+
 
 </header>

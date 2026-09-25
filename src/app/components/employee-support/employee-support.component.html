@@ -1,0 +1,306 @@
+<section class="support-section">
+
+    <div class="support-container">
+  
+      <!-- =========================
+           SECTION HEADER
+      ========================== -->
+  
+      <div class="section-header">
+  
+        <div class="header-content">
+  
+          <span class="section-kicker">
+            EMPLOYEE HUB
+          </span>
+  
+          <h2>
+            Employee Support
+          </h2>
+  
+          <p>
+            Quick access to the people and services that help you at work.
+          </p>
+  
+        </div>
+  
+        <div class="support-badge">
+          <span>?</span>
+        </div>
+  
+      </div>
+  
+  
+      <!-- =========================
+           EMERGENCY STRIP
+      ========================== -->
+  
+      <div class="emergency-panel">
+  
+        <div class="emergency-intro">
+  
+          <div class="emergency-icon">
+            🚨
+          </div>
+  
+          <div>
+  
+            <span class="emergency-label">
+              NEED IMMEDIATE HELP?
+            </span>
+  
+            <h3>
+              Emergency & Safety
+            </h3>
+  
+            <p>
+              Important emergency contacts for quick assistance.
+            </p>
+  
+          </div>
+  
+        </div>
+  
+  
+        <div class="emergency-contacts">
+  
+          @for (contact of emergencyContacts; track contact.title) {
+  
+            <button
+              type="button"
+              class="emergency-contact"
+              (click)="call(contact.number)"
+            >
+  
+              <span class="emergency-contact-icon">
+                {{ contact.icon }}
+              </span>
+  
+              <span class="emergency-contact-details">
+  
+                <strong>
+                  {{ contact.title }}
+                </strong>
+  
+                <small>
+                  {{ contact.description }}
+                </small>
+  
+                <b>
+                  {{ contact.number }}
+                </b>
+  
+              </span>
+  
+              <span class="contact-arrow">
+                →
+              </span>
+  
+            </button>
+  
+          }
+  
+        </div>
+  
+      </div>
+  
+  
+      <!-- =========================
+           FILTER BAR
+      ========================== -->
+  
+      <div class="support-toolbar">
+  
+        <div class="toolbar-title">
+  
+          <span>
+            SUPPORT DIRECTORY
+          </span>
+  
+          <h3>
+            Who can help you?
+          </h3>
+  
+        </div>
+  
+  
+        <div class="filter-buttons">
+  
+          <button
+            type="button"
+            [class.active]="activeCategory === 'all'"
+            (click)="setCategory('all')"
+          >
+            All
+          </button>
+  
+          <button
+            type="button"
+            [class.active]="activeCategory === 'hr'"
+            (click)="setCategory('hr')"
+          >
+            HR
+          </button>
+  
+          <button
+            type="button"
+            [class.active]="activeCategory === 'it'"
+            (click)="setCategory('it')"
+          >
+            IT
+          </button>
+  
+          <button
+            type="button"
+            [class.active]="activeCategory === 'admin'"
+            (click)="setCategory('admin')"
+          >
+            Admin
+          </button>
+  
+          <button
+            type="button"
+            [class.active]="activeCategory === 'security'"
+            (click)="setCategory('security')"
+          >
+            Security
+          </button>
+  
+        </div>
+  
+      </div>
+  
+  
+      <!-- =========================
+           SUPPORT CARDS
+      ========================== -->
+  
+      <div class="support-grid">
+  
+        @for (contact of getSupportContacts(); track contact.title) {
+  
+          <article class="support-card">
+  
+            <div class="card-top">
+  
+              <div class="support-icon">
+                {{ contact.icon }}
+              </div>
+  
+              <span class="available">
+                Available
+              </span>
+  
+            </div>
+  
+  
+            <h3>
+              {{ contact.title }}
+            </h3>
+  
+            <p class="support-description">
+              {{ contact.description }}
+            </p>
+  
+  
+            <div class="contact-info">
+  
+              <button
+                type="button"
+                class="contact-row"
+                (click)="call(contact.phone)"
+              >
+  
+                <span class="row-icon">
+                  ☎
+                </span>
+  
+                <span>
+                  {{ contact.phone }}
+                </span>
+  
+              </button>
+  
+  
+              <button
+                type="button"
+                class="contact-row"
+                (click)="email(contact.email)"
+              >
+  
+                <span class="row-icon">
+                  ✉
+                </span>
+  
+                <span>
+                  {{ contact.email }}
+                </span>
+  
+              </button>
+  
+            </div>
+  
+  
+            <div class="card-footer">
+  
+              @if (contact.actionType === 'call') {
+  
+                <button
+                  type="button"
+                  class="support-action"
+                  (click)="call(contact.phone)"
+                >
+                  {{ contact.actionLabel }}
+                  <span>→</span>
+                </button>
+  
+              } @else {
+  
+                <button
+                  type="button"
+                  class="support-action"
+                  (click)="email(contact.email)"
+                >
+                  {{ contact.actionLabel }}
+                  <span>→</span>
+                </button>
+  
+              }
+  
+            </div>
+  
+          </article>
+  
+        }
+  
+      </div>
+  
+  
+      <!-- =========================
+           BOTTOM NOTE
+      ========================== -->
+  
+      <div class="support-note">
+  
+        <div class="note-icon">
+          ℹ
+        </div>
+  
+        <div>
+  
+          <strong>
+            Can't find what you need?
+          </strong>
+  
+          <p>
+            Contact your HR or Administration team for assistance with
+            employee-related services.
+          </p>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </section>

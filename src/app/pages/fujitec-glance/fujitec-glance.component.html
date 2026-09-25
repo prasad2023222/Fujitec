@@ -1,0 +1,74 @@
+<section class="glance-section">
+
+    <div class="glance-container">
+  
+      <!-- HEADER -->
+      <div class="glance-header">
+  
+        <div class="glance-heading">
+  
+          <span class="section-kicker">
+            FUJITEC AT A GLANCE
+          </span>
+  
+          <h2>
+            One organization.
+            <span>Many people.</span>
+          </h2>
+  
+          <p>
+            A quick look at the people, presence and experience
+            that make Fujitec India stronger every day.
+          </p>
+  
+        </div>
+  
+      </div>
+  
+  
+      <!-- STAT CARDS -->
+      <div class="glance-grid">
+  
+        @for (stat of stats; track stat.label) {
+  
+          <article class="glance-card">
+  
+            <div class="glance-icon">
+              {{ stat.icon }}
+            </div>
+  
+            <div class="glance-number">
+              {{ stat.value }}
+            </div>
+  
+            <h3>
+              {{ stat.label }}
+            </h3>
+  
+            <p>
+              {{ stat.description }}
+            </p>
+  
+          </article>
+  
+        }
+  
+      </div>
+  
+  
+      <!-- BOTTOM STATEMENT -->
+      <div class="glance-footer">
+  
+        <span class="footer-line"></span>
+  
+        <p>
+          Moving freely. Elevating lives.
+        </p>
+  
+        <span class="footer-line"></span>
+  
+      </div>
+  
+    </div>
+  
+  </section>

@@ -2,7 +2,10 @@
 
   <div class="it-awareness-container">
 
-    <!-- HEADER -->
+    <!-- =========================================================
+         HEADER
+         ========================================================= -->
+
     <div class="awareness-header">
 
       <div class="awareness-heading">
@@ -22,73 +25,282 @@
 
       </div>
 
+
+      <!-- SECURITY BADGE -->
+
       <div class="awareness-badge">
-        <span class="badge-icon">✓</span>
+
+        <span class="badge-icon">
+          ✓
+        </span>
 
         <div>
           <strong>Stay Secure</strong>
           <span>Stay Aware</span>
         </div>
+
       </div>
 
     </div>
 
 
-    <!-- AWARENESS CARDS -->
-    <div class="awareness-grid">
+    <!-- =========================================================
+         MEDIA SLIDESHOW
+         ========================================================= -->
 
-      @for (item of awarenessItems; track item.title) {
+    <div class="awareness-showcase">
 
-        <article
-          class="awareness-card"
-          tabindex="0"
-          (click)="openItem(item)"
-          (keydown.enter)="openItem(item)"
-        >
+      <!-- MEDIA -->
 
-          <div class="card-top">
+      <div class="awareness-media">
 
-            <div class="awareness-icon">
-              {{ item.icon }}
+        @for (item of awarenessMedia; track item.id; let i = $index) {
+
+          @if (i === currentMediaIndex) {
+
+            <div
+              class="media-slide"
+              [class.video-slide]="item.type === 'video'"
+            >
+
+              <!-- IMAGE -->
+
+              @if (item.type === 'image') {
+
+                <img
+                  [src]="item.url"
+                  [alt]="item.title"
+                  class="media-image"
+                />
+
+              }
+
+
+              <!-- VIDEO -->
+
+              @if (item.type === 'video') {
+
+                <video
+                #awarenessVideo
+                class="media-video"
+                [src]="item.url"
+                autoplay
+                muted
+                playsinline
+                controls
+                (ended)="onVideoEnded()"
+              >
+              </video>
+
+              }
+
+
+              <!-- DARK GRADIENT -->
+
+              <div class="media-overlay"></div>
+
+
+              <!-- CONTENT OVER MEDIA -->
+
+              <div class="media-content">
+
+                <span class="media-category">
+                  {{ item.category }}
+                </span>
+
+                <h3>
+                  {{ item.title }}
+                </h3>
+
+                <p>
+                  {{ item.description }}
+                </p>
+
+              </div>
+
+
+              <!-- MEDIA NUMBER -->
+
+              <div class="media-counter">
+
+                <span>
+                  {{ currentMediaIndex + 1 }}
+                </span>
+
+                <span class="counter-divider">
+                  /
+                </span>
+
+                <span>
+                  {{ awarenessMedia.length }}
+                </span>
+
+              </div>
+
             </div>
 
-            <span class="awareness-category">
-              {{ item.category }}
+          }
+
+        }
+
+
+        <!-- PREVIOUS -->
+
+        <button
+          type="button"
+          class="media-nav media-prev"
+          aria-label="Previous slide"
+          (click)="previousMedia()"
+        >
+          ‹
+        </button>
+
+
+        <!-- NEXT -->
+
+        <button
+          type="button"
+          class="media-nav media-next"
+          aria-label="Next slide"
+          (click)="nextMedia()"
+        >
+          ›
+        </button>
+
+
+        <!-- DOTS -->
+
+        <div class="media-dots">
+
+          @for (item of awarenessMedia; track item.id; let i = $index) {
+
+            <button
+              type="button"
+              class="media-dot"
+              [class.active]="i === currentMediaIndex"
+              [attr.aria-label]="'Go to slide ' + (i + 1)"
+              (click)="goToMedia(i)"
+            >
+            </button>
+
+          }
+
+        </div>
+
+      </div>
+
+
+      <!-- =======================================================
+           SIDE INFORMATION PANEL
+           ======================================================= -->
+
+      <aside class="awareness-info">
+
+        <div class="info-label">
+          {{ awarenessMedia[currentMediaIndex].category }}
+        </div>
+
+        <h3>
+          {{ awarenessMedia[currentMediaIndex].title }}
+        </h3>
+
+        <p>
+          {{ awarenessMedia[currentMediaIndex].description }}
+        </p>
+
+
+        <div class="info-divider"></div>
+
+
+        <div class="info-points">
+
+          <div class="info-point">
+
+            <span class="point-icon">
+              ✓
             </span>
+
+            <div>
+              <strong>Stay alert</strong>
+              <span>
+                Be aware of suspicious activity.
+              </span>
+            </div>
 
           </div>
 
 
-          <h3>
-            {{ item.title }}
-          </h3>
+          <div class="info-point">
+
+            <span class="point-icon">
+              ✓
+            </span>
+
+            <div>
+              <strong>Protect information</strong>
+              <span>
+                Handle company information responsibly.
+              </span>
+            </div>
+
+          </div>
 
 
-          <p>
-            {{ item.summary }}
-          </p>
+          <div class="info-point">
+
+            <span class="point-icon">
+              ✓
+            </span>
+
+            <div>
+              <strong>Report concerns</strong>
+              <span>
+                Contact IT when something looks unusual.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
 
 
-          <div class="card-footer">
+        <!-- MEDIA TYPE -->
+
+        <div class="media-type">
+
+          @if (awarenessMedia[currentMediaIndex].type === 'video') {
+
+            <span class="type-icon">
+              ▶
+            </span>
 
             <span>
-              Learn More
+              Video
             </span>
 
-            <span class="card-arrow">
-              →
+          } @else {
+
+            <span class="type-icon">
+              ▣
             </span>
 
-          </div>
+            <span>
+              Awareness
+            </span>
 
-        </article>
+          }
 
-      }
+        </div>
+
+      </aside>
 
     </div>
 
 
-    <!-- BOTTOM MESSAGE -->
+    <!-- =========================================================
+         SECURITY REMINDER
+         ========================================================= -->
+
     <div class="awareness-message">
 
       <div class="message-icon">
@@ -110,85 +322,5 @@
     </div>
 
   </div>
-
-
-  <!-- MODAL -->
-
-  @if (selectedItem) {
-
-    <div
-      class="awareness-modal-backdrop"
-      (click)="closeItem()"
-    >
-
-      <article
-        class="awareness-modal"
-        (click)="$event.stopPropagation()"
-      >
-
-        <button
-          type="button"
-          class="modal-close"
-          aria-label="Close"
-          (click)="closeItem()"
-        >
-          ×
-        </button>
-
-
-        <div class="modal-icon">
-          {{ selectedItem.icon }}
-        </div>
-
-
-        <span class="modal-category">
-          {{ selectedItem.category }}
-        </span>
-
-
-        <h3>
-          {{ selectedItem.title }}
-        </h3>
-
-
-        <p class="modal-summary">
-          {{ selectedItem.summary }}
-        </p>
-
-
-        <div class="modal-details">
-
-          @for (detail of selectedItem.details; track detail) {
-
-            <div class="detail-item">
-
-              <span class="detail-check">
-                ✓
-              </span>
-
-              <span>
-                {{ detail }}
-              </span>
-
-            </div>
-
-          }
-
-        </div>
-
-
-        <button
-          type="button"
-          class="modal-close-button"
-          (click)="closeItem()"
-        >
-          Close
-        </button>
-
-      </article>
-
-    </div>
-
-  }
 
 </section>

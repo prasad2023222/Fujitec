@@ -20,13 +20,13 @@ export class QuickAccessComponent {
     {
       name: 'Gmail',
       image: '/assets/quick-access/gmail.png',
-      fallback: 'G',
+      fallback: 'GMAIL',
       url: '#'
     },
     {
       name: 'Outlook',
       image: '/assets/quick-access/outlook.png',
-      fallback: 'O',
+      fallback: 'OUTLOOK',
       url: '#'
     },
     {
@@ -80,13 +80,13 @@ export class QuickAccessComponent {
     {
       name: 'eMail Signature',
       image: '/assets/quick-access/email-signature.png',
-      fallback: 'MAIL',
+      fallback: 'EMAIL',
       url: '#'
     },
     {
-      name: 'PAWS',
+      name: 'PAVS',
       image: '/assets/quick-access/paws.png',
-      fallback: 'PAWS',
+      fallback: 'PAVS',
       url: '#'
     }
   ];
